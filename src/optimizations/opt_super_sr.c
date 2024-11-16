@@ -9,6 +9,7 @@
 #include "free.h"
 #include "str.h"
 #include "copy_node.h"
+#include "globals.h"
 
 
 
@@ -55,7 +56,8 @@ node *SSRbinop (node *arg_node, info *arg_info)
 
     if (BINOP_OP(arg_node) == BO_mul) {
       if ((NODE_TYPE(BINOP_LEFT(arg_node)) == N_var) && 
-      NODE_TYPE(BINOP_RIGHT(arg_node)) == N_num) {
+      NODE_TYPE(BINOP_RIGHT(arg_node)) == N_num &&
+      NUM_VALUE(BINOP_RIGHT(arg_node)) <= SSR_maxFactor) {
 
 
       // rekursiv den NUM Knoten erweitern indem:
@@ -68,7 +70,8 @@ node *SSRbinop (node *arg_node, info *arg_info)
 
       }
       else if ((NODE_TYPE(BINOP_RIGHT(arg_node)) == N_var) && 
-      NODE_TYPE(BINOP_LEFT(arg_node)) == N_num) {
+      NODE_TYPE(BINOP_LEFT(arg_node)) == N_num &&
+      NUM_VALUE(BINOP_RIGHT(arg_node)) <= SSR_maxFactor) {
         int num_value = NUM_VALUE(BINOP_LEFT(arg_node));
         BINOP_LEFT(arg_node) = FREEdoFreeTree(BINOP_LEFT(arg_node)); // Speicher freigeben
         // num_value - 1!!!!

@@ -4,5 +4,6 @@
 #include "types.h"
 
 extern void OPTcheckOptions( int argc, char **argv);
+extern int SSR_maxFaktor;  // Maximale Konstante für Super Strength Reduction
 
 #endif /* _SAC_OPTIONS_H_ */

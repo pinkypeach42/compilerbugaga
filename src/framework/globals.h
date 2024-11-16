@@ -57,11 +57,15 @@ typedef struct GLOBALS_T {
   #undef GLOBALtype
   #undef GLOBALname
 
+
   int argc;
   char **argv;
 } globals_t;
 
+extern int SSR_maxFactor;  // wird global deklariert
+
 extern globals_t global;
+
 
 extern void GLBinitializeGlobals( int argc, char *argv[]);
 

@@ -50,14 +50,14 @@
 
 globals_t global;
 
-
+int SSR_maxFactor = 2; // Standardwert fuer Super Strength Reduction
 /*
  * Initialize global variables from globals.mac
  */
 
 void GLBinitializeGlobals( int argc, char *argv[])
 {
-  DBUG_ENTER("GLBinitializeGlobals");
+DBUG_ENTER("GLBinitializeGlobals");
 
 #define GLOBALname( name) global.name = 
 #define GLOBALinit( init) init ;

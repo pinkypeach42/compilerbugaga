@@ -60,4 +60,5 @@ src/optimizations/opt_super_sr.o src/optimizations/.opt_super_sr.d: $(PROJECT_RO
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_wchar_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/malloc/_malloc.h \
   src/framework/memory.h src/framework/free.h src/framework/free_node.h \
-  src/framework/str.h src/framework/copy_node.h
+  src/framework/str.h src/framework/copy_node.h src/framework/globals.h \
+  src/framework/globals.mac

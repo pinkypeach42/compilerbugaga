@@ -20,7 +20,10 @@ void PrintGeneralInfo(void)
           
   printf( "\n\nSPECIAL OPTIONS:\n\n"
           
-          "    -h              Display this helptext.\n");
+          "    -h              Display this helptext.\n"
+          "    -ssr <num>     Set the maximum factor for Super strength reduction\n"
+          "                    (default: 2).\n");  
+         
   
   printf( "\n\nGENERAL OPTIONS:\n\n"
           
