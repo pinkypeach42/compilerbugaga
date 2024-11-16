@@ -8,6 +8,7 @@
 #include "memory.h"
 #include "free.h"
 #include "str.h"
+#include "copy_node.h"
 
 
 

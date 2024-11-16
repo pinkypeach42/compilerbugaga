@@ -66,6 +66,12 @@
         </travuser>
       </traversal>
 
+      <traversal id="SSR" name="Super Strength Reduction" default="sons" include="opt_super_sr.h">
+        <travuser>
+          <node name="BinOp" />
+        </travuser>
+      </traversal>
+
 
     </general>
   </phases>

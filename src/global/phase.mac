@@ -63,9 +63,15 @@ PHASE (opt,
 
 SUBPHASE (sr,
     "Strength Reduction Optimization",
-    SRdoStrengthReduction,
+    SRdoOptSR,
     ALWAYS,
     opt)
+
+SUBPHASE (ssr,
+    "Super Strength Reduction Optimization",
+    SSRdoOptSSR,
+    ALWAYS,
+    opt)    
 
 ENDPHASE(opt) 
 

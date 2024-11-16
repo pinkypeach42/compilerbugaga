@@ -22,6 +22,7 @@
 #include "sum_ints.h"
 #include "opt_sub.h"
 #include "opt_strength_reduction.h"
+#include "opt_super_sr.h"
 
 
 travtables_t	travtables = {
@@ -52,19 +53,22 @@ travtables_t	travtables = {
 
 	/* TR_sr */
 	,{&TRAVerror, &TRAVsons, &TRAVsons, &SRbinop, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons}
+
+	/* TR_ssr */
+	,{&TRAVerror, &TRAVsons, &TRAVsons, &SSRbinop, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons}
 };
 
 preposttable_t	pretable = {
 	NULL
-	,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+	,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 };
 
 preposttable_t	posttable = {
 	NULL
-	,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+	,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 };
 
-const char     *travnames[9] = {
+const char     *travnames[10] = {
 	"unknown"
-	,"prt", "copy", "free", "chk", "ri", "si", "os", "sr"
+	,"prt", "copy", "free", "chk", "ri", "si", "os", "sr", "ssr"
 };

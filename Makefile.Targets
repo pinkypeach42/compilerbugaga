@@ -83,6 +83,6 @@ demo        = rename_identifiers.o opt_sub.o sum_ints.o
 
 # optimization Erweiterung
 
-optimizations = opt_strength_reduction.o 
+optimizations = opt_strength_reduction.o opt_super_sr.o
 
 

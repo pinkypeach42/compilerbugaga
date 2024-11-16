@@ -39,4 +39,5 @@ src/framework/traverse_tables.o src/framework/.traverse_tables.d: $(PROJECT_ROOT
   src/framework/copy_node.h src/framework/free_node.h \
   src/framework/check.h src/demo/rename_identifiers.h \
   src/demo/sum_ints.h src/demo/opt_sub.h \
-  src/optimizations/opt_strength_reduction.h
+  src/optimizations/opt_strength_reduction.h \
+  src/optimizations/opt_super_sr.h
