@@ -17,10 +17,20 @@
  */
 
 node *createAdditionTree(node *var_node, int n) {
+      if (var_node == NULL) {
+        DBUG_ASSERT(FALSE, "var_node is NULL in createAdditionTree");
+        return NULL;
+    }
+
+    if (n <= 0) {
+    DBUG_ASSERT(FALSE, "Invalid value of n in createAdditionTree");
+    return NULL;
+}
 
 /* Basisfall*/
     if (n == 1) {
-        return COPYvar(var_node, NULL); 
+        return TBmakeVar(STRcpy(VAR_NAME(var_node)));
+  
     }
 
 /* Rekursiver Fall: neuer Additionsknoten wird erstellt */  
@@ -52,17 +62,17 @@ node *SSRbinop (node *arg_node, info *arg_info)
       // VAR Knoten + NUM Value der rekursiven func uebergeben wird
       int num_value = NUM_VALUE(BINOP_RIGHT(arg_node)); // Wert sichern
       BINOP_RIGHT(arg_node) = FREEdoFreeTree(BINOP_RIGHT(arg_node)); // Speicher freigeben
-      BINOP_RIGHT(arg_node) = createAdditionTree(BINOP_LEFT(arg_node), num_value); // Baum erstellen
+      BINOP_RIGHT(arg_node) = createAdditionTree(BINOP_LEFT(arg_node), num_value-1); // Baum erstellen
       // * durch + ersetzen
       BINOP_OP(arg_node) = BO_add;
 
       }
       else if ((NODE_TYPE(BINOP_RIGHT(arg_node)) == N_var) && 
-      NODE_TYPE(BINOP_LEFT(arg_node)) == N_num &&
-      NUM_VALUE(BINOP_LEFT(arg_node)) == 2) {
+      NODE_TYPE(BINOP_LEFT(arg_node)) == N_num) {
         int num_value = NUM_VALUE(BINOP_LEFT(arg_node));
         BINOP_LEFT(arg_node) = FREEdoFreeTree(BINOP_LEFT(arg_node)); // Speicher freigeben
-        BINOP_LEFT(arg_node) = createAdditionTree(BINOP_RIGHT(arg_node), num_value);
+        // num_value - 1!!!!
+        BINOP_LEFT(arg_node) = createAdditionTree(BINOP_RIGHT(arg_node), num_value-1);
     
       // * durch + ersetzen
         BINOP_OP(arg_node) = BO_add;
