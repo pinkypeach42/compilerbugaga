@@ -1,6 +1,7 @@
 src/framework/memory.o src/framework/.memory.d: $(PROJECT_ROOT)/Makefile.Config src/framework/memory.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_symbol_aliasing.h \
@@ -58,5 +59,5 @@ src/framework/memory.o src/framework/.memory.d: $(PROJECT_ROOT)/Makefile.Config 
   src/framework/types_nodetype.h src/framework/types_trav.h \
   src/global/phase.mac src/framework/phase_initialise_defs.mac \
   src/framework/phase_undefine_defs.mac src/global/mytypes.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include/stdarg.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include/stdarg.h \
   src/framework/memory.h

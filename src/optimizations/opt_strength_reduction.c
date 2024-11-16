@@ -33,20 +33,35 @@ node *SRbinop (node *arg_node, info *arg_info)
     DBUG_ENTER("SRbinop");
 
 
-
     BINOP_LEFT(arg_node) = TRAVdo (BINOP_LEFT(arg_node), arg_info);
     BINOP_RIGHT(arg_node) = TRAVdo (BINOP_RIGHT(arg_node), arg_info);
 
     if (BINOP_OP(arg_node) == BO_mul) {
+      if ((NODE_TYPE(BINOP_LEFT(arg_node)) == N_var) && 
+      NODE_TYPE(BINOP_RIGHT(arg_node)) == N_num &&
+      NUM_VALUE(BINOP_RIGHT(arg_node)) == 2) {
+        
 
-        if (NODE_TYPE(BINOP_LEFT(arg_node)) == N_num && NUM_VALUE(BINOP_LEFT(arg_node)) == 2){
-            BINOP_OP(arg_node) = BO_add;
-            BINOP_LEFT(arg_node) = BINOP_RIGHT(arg_node);
-            BINOP_RIGHT(arg_node) = COPYbinop(BINOP_RIGHT(arg_node), arg_info);
-    } else if (NODE_TYPE(BINOP_RIGHT(arg_node)) == N_num && NUM_VALUE(BINOP_RIGHT(arg_node)) == 2) {
+
+      // Освобождаем старый правый узел
+      BINOP_RIGHT(arg_node) = FREEdoFreeTree(BINOP_RIGHT(arg_node));
+      // Создаём новый правый узел
+      BINOP_RIGHT(arg_node) = TBmakeVar(STRcpy(VAR_NAME(BINOP_LEFT(arg_node))));
+
+
+// Создаём новый правый узел, копируя имя из левого узла
         BINOP_OP(arg_node) = BO_add;
-        BINOP_RIGHT(arg_node) = COPYbinop(BINOP_LEFT(arg_node), arg_info);
-    }
+      }
+      if ((NODE_TYPE(BINOP_RIGHT(arg_node)) == N_var) && 
+      NODE_TYPE(BINOP_LEFT(arg_node)) == N_num &&
+      NUM_VALUE(BINOP_LEFT(arg_node)) == 2) {
+
+
+         BINOP_LEFT(arg_node) = FREEdoFreeTree(BINOP_RIGHT(arg_node));
+        BINOP_LEFT(arg_node) = TBmakeVar(STRcpy(VAR_NAME(BINOP_RIGHT(arg_node))));
+         BINOP_OP(arg_node) = BO_add;
+      }
+
 
   }
 
@@ -54,12 +69,12 @@ node *SRbinop (node *arg_node, info *arg_info)
 }
 
 /*
- * Traversal start function
+ * Traversal start function old SRdoStrengthReduction
  */
 
-node *SRdoStrengthReduction( node *syntaxtree)
+node *SRdoOptSR( node *syntaxtree)
 {
-  DBUG_ENTER("SRdoStrengthReduction");
+  DBUG_ENTER("SRdoOptSR");
 
   TRAVpush( TR_sr);
   syntaxtree = TRAVdo( syntaxtree, NULL);

@@ -1,6 +1,7 @@
 src/framework/main.o src/framework/.main.d: $(PROJECT_ROOT)/Makefile.Config src/framework/main.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_symbol_aliasing.h \
@@ -69,5 +70,5 @@ src/framework/main.o src/framework/.main.d: $(PROJECT_ROOT)/Makefile.Config src/
   src/framework/phase_undefine_defs.mac src/global/mytypes.h \
   src/global/options.h src/framework/globals.h src/framework/globals.mac \
   src/global/myglobals.h src/global/myglobals.mac src/framework/ctinfo.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include/stdarg.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include/stdarg.h \
   src/framework/dbug.h

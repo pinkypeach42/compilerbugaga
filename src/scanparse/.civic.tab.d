@@ -5,6 +5,7 @@ src/scanparse/civic.tab.o src/scanparse/.civic.tab.d: $(PROJECT_ROOT)/Makefile.C
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_symbol_aliasing.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_posix_availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types.h \
@@ -60,6 +61,6 @@ src/scanparse/civic.tab.o src/scanparse/.civic.tab.d: $(PROJECT_ROOT)/Makefile.C
   src/framework/tree_basic.h src/framework/sons.h \
   src/framework/attribs.h src/framework/node_basic.h src/framework/str.h \
   src/framework/dbug.h src/framework/ctinfo.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include/stdarg.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include/stdarg.h \
   src/framework/free.h src/framework/free_node.h src/framework/globals.h \
   src/framework/globals.mac

@@ -9,6 +9,7 @@ src/global/options.o src/global/.options.d: $(PROJECT_ROOT)/Makefile.Config src/
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/i386/_types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_size_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_null.h \
@@ -59,5 +60,5 @@ src/global/options.o src/global/.options.d: $(PROJECT_ROOT)/Makefile.Config src/
   src/framework/phase_undefine_defs.mac src/global/mytypes.h \
   src/framework/globals.h src/framework/globals.mac src/global/usage.h \
   src/framework/ctinfo.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include/stdarg.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include/stdarg.h \
   src/framework/phase_options.h
