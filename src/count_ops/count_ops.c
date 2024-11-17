@@ -7,7 +7,7 @@
 #include "dbug.h"
 #include "ctinfo.h"
 
-#define INFO_COUNT(n)  ((n)->count)
+
 
 /*
  * INFO structure + MakeInfo + FreeInfo
@@ -17,6 +17,7 @@ struct INFO {
    int count;
 };
 
+#define INFO_COUNT(n)  ((n)->count)
 
 // Создание структуры INFO
 static info *MakeInfo(void) 
@@ -81,7 +82,7 @@ node *COUNTOPSdoCount( node *syntaxtree)
   TRAVpop();
 
   printf("count %d\n ", INFO_COUNT( arg_info));
-  CTInote( "count of arithmetic operations: %d", INFO_COUNT( arg_info));
+  CTInote( "arithmetic operations total: %d", INFO_COUNT( arg_info));
 
   ROOTNODE_NUM(syntaxtree) = TBmakeNum(INFO_COUNT(arg_info));
   arg_info = FreeInfo( arg_info);

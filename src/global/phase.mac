@@ -79,11 +79,11 @@ ENDPHASE(opt)
 /******************************************************************************/
 
 PHASE(count,
-    "Count arithmetic operations",
+    "Counting arithmetic operations",
     ALWAYS)   
 
 SUBPHASE(countops, 
-         "Count Operations", 
+         "Operations total", 
          COUNTOPSdoCount, 
          ALWAYS, 
          count)
