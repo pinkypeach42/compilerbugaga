@@ -276,6 +276,42 @@ node           *CHKnum(node * arg_node, info * arg_info) {
 }
 /** <!--******************************************************************-->
  *
+ * @fn CHKrootnode
+ *
+ * @brief Check the node and its sons/attributes
+ *
+ * @param arg_node RootNode node to process
+ * @param arg_info pointer to info structure
+ *
+ * @return processed node
+ *
+ ***************************************************************************/
+node           *CHKrootnode(node * arg_node, info * arg_info) {
+	DBUG_ENTER("CHKrootnode");
+
+	/*
+	 * Son check: ROOTNODE_STATEMENTS
+	 */
+	if ((FALSE)) {
+		CHKexistSon(ROOTNODE_STATEMENTS(arg_node), arg_node, "mandatory son ROOTNODE_STATEMENTS is NULL");
+		if (ROOTNODE_STATEMENTS(arg_node) != NULL) {
+			if (!((FALSE) || (NODE_TYPE(ROOTNODE_STATEMENTS(arg_node)) == N_stmts))) {
+				CHKcorrectTypeInsertError(arg_node, "ROOTNODE_STATEMENTS hasnt the right type." " It should be: " "N_stmts");
+			}
+		}
+	} else {
+		CHKnotExist(ROOTNODE_STATEMENTS(arg_node), arg_node, "attribute ROOTNODE_STATEMENTS must be NULL");
+	}
+
+	/*
+	 * trav functions: to get all sons
+	 */
+	if (ROOTNODE_STATEMENTS(arg_node) != NULL) {
+		ROOTNODE_STATEMENTS(arg_node) = TRAVdo(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	} DBUG_RETURN(arg_node);
+}
+/** <!--******************************************************************-->
+ *
  * @fn CHKstmts
  *
  * @brief Check the node and its sons/attributes
@@ -416,6 +452,7 @@ typedef enum {
 	CHK_error_message,
 	CHK_float_value,
 	CHK_num_value,
+	CHK_rootnode_countplus,
 	CHK_var_name,
 	CHK_varlet_name
 }		attr_list;

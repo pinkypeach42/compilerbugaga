@@ -23,6 +23,7 @@ extern node    *COPYbool(node * arg_node, info * arg_info);
 extern node    *COPYerror(node * arg_node, info * arg_info);
 extern node    *COPYfloat(node * arg_node, info * arg_info);
 extern node    *COPYnum(node * arg_node, info * arg_info);
+extern node    *COPYrootnode(node * arg_node, info * arg_info);
 extern node    *COPYstmts(node * arg_node, info * arg_info);
 extern node    *COPYsymboltableentry(node * arg_node, info * arg_info);
 extern node    *COPYvar(node * arg_node, info * arg_info);

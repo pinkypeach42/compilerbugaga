@@ -84,6 +84,7 @@ node *TRAVdo(node *arg_node, info *arg_info)
       "no traversal on stack!");
 
   global.line = NODE_LINE( arg_node);
+  printf("TRAVdo: Processing node type: %d\n", NODE_TYPE(arg_node)); // Assignment 2.4
 
   if (pretable[ travstack->traversal] != NULL) {
     arg_node = pretable[ travstack->traversal]( arg_node, arg_info);
@@ -181,3 +182,4 @@ void TRAVsetPostFun( trav_t traversal, travfun_p postfun)
 
   DBUG_VOID_RETURN;
 }
+

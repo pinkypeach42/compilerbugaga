@@ -48,10 +48,14 @@
 
 
 #include "phase_drivers.h"
+#include "traverse_tables.h"
 
 #include "dbug.h"
 #include "phase.h"
 #include "globals.h"
+#include "count_ops.h"
+
+#include "types_trav.h"
 
 
 
@@ -154,6 +158,7 @@ node *PHDdrive( node *syntax_tree)
 
 #undef PHASEname
 #undef PHASEcond
+
 
   DBUG_RETURN( syntax_tree);
 }

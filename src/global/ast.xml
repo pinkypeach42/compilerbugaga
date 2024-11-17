@@ -37,6 +37,7 @@
     -->
     <general>
       <traversal id="PRT" name="Print Syntax Tree" default="user" include="print.h" />
+
       <traversal id="COPY" name="Copy Syntax Tree" default="user" include="copy_node.h" />
       <traversal id="FREE" name="Free Syntax Tree" default="user" include="free_node.h" />
       <traversal id="CHK" name="Check Syntax Tree" default="user" include="check.h" />
@@ -72,6 +73,13 @@
         </travuser>
       </traversal>
 
+   <traversal id="COUNTOPS" name="Count Operators" default="user" include="count_ops.h">
+    <travuser>
+        <node name="RootNode"/>
+        <node name="BinOp"/>
+    </travuser>
+</traversal>
+
 
     </general>
   </phases>
@@ -102,6 +110,48 @@
 -->
 
   <syntaxtree>
+<!--
+ Root Node (Assignment 2.3):
+<phase name="PRT" />  - fuer pretty printing
+-->
+
+<node name="RootNode">
+  <description>Represents the root of the syntax tree for a compilation unit</description>
+  <sons>
+    <son name="Statements">
+      <description>Sequence of statements in the program</description>
+      <targets>
+        <target mandatory="yes">
+          <node name="Stmts"/>
+          <phases>
+            <phase name="COUNTOPS"/>
+            <phase name="PRT" /> 
+          </phases>
+        </target>
+      </targets>
+    </son>
+  </sons>
+  <attributes>
+    <attribute name="CountPlus">
+      <type name="Int"/>
+    </attribute>
+    <attribute name="CountMinus">
+      <type name="Int"/>
+    </attribute>
+    <attribute name="CountMult">
+      <type name="Int"/>
+    </attribute>
+    <attribute name="CountDiv">
+      <type name="Int"/>
+    </attribute>
+    <attribute name="CountMod">
+      <type name="Int"/>
+    </attribute>
+  </attributes>
+</node>
+
+
+
 <!--
  Node Stmts:
 -->

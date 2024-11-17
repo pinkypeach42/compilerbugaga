@@ -37,6 +37,39 @@ MakeEmptyNode()
 
 
 /*****************************************************************************
+ * N_RootNode :
+ *****************************************************************************/
+
+node           *TBmakeRootnode(node * Statements) {
+	node           *this;
+	DBUG_ENTER("TBmakeRootnode");
+	DBUG_PRINT("MAKE", ("allocating node structure"));
+	this = MakeEmptyNode();
+	NODE_TYPE(this) = N_rootnode;
+	DBUG_PRINT("MAKE", ("address: %s ", this));
+	DBUG_PRINT("MAKE", ("allocating sons structure"));
+	this->sons.N_rootnode = MEMmalloc(sizeof(struct SONS_N_ROOTNODE));
+	DBUG_PRINT("MAKE", ("allocating attrib structure"));
+	this->attribs.N_rootnode = MEMmalloc(sizeof(struct ATTRIBS_N_ROOTNODE));
+	DBUG_PRINT("MAKE", ("setting node type"));
+	NODE_TYPE(this) = N_rootnode;
+	DBUG_PRINT("MAKE", ("assigning son Statements initial value: %s ", Statements));
+	ROOTNODE_STATEMENTS(this) = Statements;
+	ROOTNODE_COUNTPLUS(this) = 0;
+	ROOTNODE_COUNTMINUS(this) = 0;
+	ROOTNODE_COUNTMULT(this) = 0;
+	ROOTNODE_COUNTDIV(this) = 0;
+	ROOTNODE_COUNTMOD(this) = 0;
+#ifndef DBUG_OFF
+	DBUG_PRINT("MAKE", ("doing son target checks"));
+	if ((ROOTNODE_STATEMENTS(this) != NULL) && (NODE_TYPE(ROOTNODE_STATEMENTS(this)) != N_stmts)) {
+		CTIwarn("Field Statements of node N_RootNode has non-allowed target node.");
+	}
+#endif				/* DBUG_OFF */
+	DBUG_RETURN(this);
+}
+
+/*****************************************************************************
  * N_Stmts :
  *****************************************************************************/
 

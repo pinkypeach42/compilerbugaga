@@ -40,6 +40,13 @@ struct ATTRIBS_N_FLOAT {
 struct ATTRIBS_N_NUM {
 	int		Value;
 };
+struct ATTRIBS_N_ROOTNODE {
+	int		CountPlus;
+	int		CountMinus;
+	int		CountMult;
+	int		CountDiv;
+	int		CountMod;
+};
 struct ATTRIBS_N_STMTS {
 };
 struct ATTRIBS_N_SYMBOLTABLEENTRY {
@@ -63,6 +70,7 @@ struct ATTRIBUNION {
 	struct ATTRIBS_N_ERROR *N_error;
 	struct ATTRIBS_N_FLOAT *N_float;
 	struct ATTRIBS_N_NUM *N_num;
+	struct ATTRIBS_N_ROOTNODE *N_rootnode;
 	struct ATTRIBS_N_STMTS *N_stmts;
 	struct ATTRIBS_N_SYMBOLTABLEENTRY *N_symboltableentry;
 	struct ATTRIBS_N_VAR *N_var;

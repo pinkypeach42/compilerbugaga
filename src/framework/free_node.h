@@ -23,6 +23,7 @@ extern node    *FREEbool(node * arg_node, info * arg_info);
 extern node    *FREEerror(node * arg_node, info * arg_info);
 extern node    *FREEfloat(node * arg_node, info * arg_info);
 extern node    *FREEnum(node * arg_node, info * arg_info);
+extern node    *FREErootnode(node * arg_node, info * arg_info);
 extern node    *FREEstmts(node * arg_node, info * arg_info);
 extern node    *FREEsymboltableentry(node * arg_node, info * arg_info);
 extern node    *FREEvar(node * arg_node, info * arg_info);

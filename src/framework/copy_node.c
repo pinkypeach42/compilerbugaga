@@ -168,6 +168,33 @@ node           *COPYnum(node * arg_node, info * arg_info) {
 }
 /** <!--******************************************************************-->
  *
+ * @fn COPYrootnode
+ *
+ * @brief Copies the node and its sons/attributes
+ *
+ * @param arg_node RootNode node to process
+ * @param arg_info pointer to info structure
+ *
+ * @return processed node
+ *
+ ***************************************************************************/
+node           *COPYrootnode(node * arg_node, info * arg_info) {
+	node           *result = TBmakeRootnode(NULL);
+	DBUG_ENTER("COPYrootnode");
+	LUTinsertIntoLutP(INFO_LUT(arg_info), arg_node, result);
+	/* Copy attributes */
+	ROOTNODE_COUNTPLUS(result) = ROOTNODE_COUNTPLUS(arg_node);
+	ROOTNODE_COUNTMINUS(result) = ROOTNODE_COUNTMINUS(arg_node);
+	ROOTNODE_COUNTMULT(result) = ROOTNODE_COUNTMULT(arg_node);
+	ROOTNODE_COUNTDIV(result) = ROOTNODE_COUNTDIV(arg_node);
+	ROOTNODE_COUNTMOD(result) = ROOTNODE_COUNTMOD(arg_node);
+	/* Copy sons */
+	ROOTNODE_STATEMENTS(result) = COPYTRAV(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	/* Return value */
+	DBUG_RETURN(result);
+}
+/** <!--******************************************************************-->
+ *
  * @fn COPYstmts
  *
  * @brief Copies the node and its sons/attributes

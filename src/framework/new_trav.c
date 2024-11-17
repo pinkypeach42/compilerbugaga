@@ -130,6 +130,23 @@ node           *EVALnum(node * arg_node, info * arg_info) {
 }
 /** <!--******************************************************************-->
  *
+ * @fn EVALrootnode
+ *
+ * @brief Frees the node and its sons/attributes
+ *
+ * @param arg_node RootNode node to process
+ * @param arg_info pointer to info structure
+ *
+ * @return processed node
+ *
+ ***************************************************************************/
+node           *EVALrootnode(node * arg_node, info * arg_info) {
+	DBUG_ENTER("EVALrootnode");
+	arg_node = TRAVcont(arg_node, arg_info);
+	DBUG_RETURN(arg_node);
+}
+/** <!--******************************************************************-->
+ *
  * @fn EVALstmts
  *
  * @brief Frees the node and its sons/attributes

@@ -184,6 +184,30 @@ node           *FREEnum(node * arg_node, info * arg_info) {
 }
 /** <!--******************************************************************-->
  *
+ * @fn FREErootnode
+ *
+ * @brief Frees the node and its sons/attributes
+ *
+ * @param arg_node RootNode node to process
+ * @param arg_info pointer to info structure
+ *
+ * @return processed node
+ *
+ ***************************************************************************/
+node           *FREErootnode(node * arg_node, info * arg_info) {
+	node           *result = NULL;
+	DBUG_ENTER("FREErootnode");
+	DBUG_PRINT("FREE", ("Processing node N_rootnode at " F_PTR, arg_node));
+	ROOTNODE_STATEMENTS(arg_node) = FREETRAV(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	result = NULL;
+	arg_node->sons.N_rootnode = MEMfree(arg_node->sons.N_rootnode);
+	arg_node->attribs.N_rootnode = MEMfree(arg_node->attribs.N_rootnode);
+	DBUG_PRINT("FREE", ("Processing node N_rootnode at " F_PTR, arg_node));
+	result = MEMfree(arg_node);
+	DBUG_RETURN(result);
+}
+/** <!--******************************************************************-->
+ *
  * @fn FREEstmts
  *
  * @brief Frees the node and its sons/attributes

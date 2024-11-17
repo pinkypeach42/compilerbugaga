@@ -23,6 +23,7 @@ extern node    *EVALbool(node * arg_node, info * arg_info);
 extern node    *EVALerror(node * arg_node, info * arg_info);
 extern node    *EVALfloat(node * arg_node, info * arg_info);
 extern node    *EVALnum(node * arg_node, info * arg_info);
+extern node    *EVALrootnode(node * arg_node, info * arg_info);
 extern node    *EVALstmts(node * arg_node, info * arg_info);
 extern node    *EVALsymboltableentry(node * arg_node, info * arg_info);
 extern node    *EVALvar(node * arg_node, info * arg_info);

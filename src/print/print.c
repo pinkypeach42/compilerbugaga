@@ -21,6 +21,7 @@
 #include "dbug.h"
 #include "memory.h"
 #include "globals.h"
+#include "traverse_helper.h" // TRAVsons (wegen Assignment 2.3)
 
 
 /*
@@ -385,6 +386,35 @@ PRTerror (node * arg_node, info * arg_info)
 
 
 
+//Assignment 2.3
+
+
+const char* getNodeTypeString(node *arg_node) {
+    switch (NODE_TYPE(arg_node)) {
+        case N_rootnode:
+            return "RootNode";
+        case N_binop:
+            return "BinOp";
+        case N_assign:
+            return "Assign";
+        case N_stmts:
+            return "Statements";
+        case N_num:
+            return "Number";
+        case N_float:
+            return "Float";
+        case N_bool:
+            return "Boolean";
+        case N_var:
+            return "Variable";
+        case N_varlet:
+            return "Variable Let";
+        // Weitere Knotentypen hinzufügen
+        default:
+            return "Unknown Node";
+    }
+}
+
 /** <!-- ****************************************************************** -->
  * @brief Prints the given syntaxtree
  * 
@@ -403,12 +433,18 @@ node
   DBUG_ASSERT( (syntaxtree!= NULL), "PRTdoPrint called with empty syntaxtree");
 
   printf( "\n\n------------------------------\n\n");
+  DBUG_PRINT("DEBUG", ("Starting Pretty-Print Traversal"));
+  printf("DEBUG: Wurzelknotentyp: %s\n", getNodeTypeString(syntaxtree));
 
   info = MakeInfo();
   
-  TRAVpush( TR_prt);
+  TRAVpush(TR_prt);
+  if (NODE_TYPE(syntaxtree) == N_rootnode) {
+    printf("DEBUG: Wurzelknoten gefunden.\n");
+  }
 
   syntaxtree = TRAVdo( syntaxtree, info);
+  DBUG_PRINT("DEBUG", ("Traversal abgeschlossen"));
 
   TRAVpop();
 
@@ -418,6 +454,65 @@ node
 
   DBUG_RETURN( syntaxtree);
 }
+
+
+//Assignment 2.3
+
+node *PRINT_node(node *arg_node, info *arg_info) {
+    DBUG_ENTER("PRINT_node");
+
+    if (arg_node == NULL) {
+        DBUG_RETURN(NULL);
+    }
+
+    // Print the node type
+    printf("Node Type: %s\n", getNodeTypeString(arg_node));
+
+
+    // Print attributes based on the node type
+    switch (NODE_TYPE(arg_node)) {
+        case N_rootnode:
+            printf("CountPlus: %d\n", ROOTNODE_COUNTPLUS(arg_node));
+            printf("CountMinus: %d\n", ROOTNODE_COUNTMINUS(arg_node));
+            printf("CountMult: %d\n", ROOTNODE_COUNTMULT(arg_node));
+            printf("CountDiv: %d\n", ROOTNODE_COUNTDIV(arg_node));
+            printf("CountMod: %d\n", ROOTNODE_COUNTMOD(arg_node));
+            break;
+
+        case N_binop:
+            PRTbinop(arg_node, arg_info);
+
+        // Add cases for other node types as needed
+        default:
+            printf("Unhandled node type.\n");
+            break;
+    }
+
+    // Recursively process the node's sons
+    TRAVsons(arg_node, arg_info);
+
+    DBUG_RETURN(arg_node);
+}
+
+
+node *PRTrootnode(node *arg_node, info *arg_info) {
+    DBUG_ENTER("PRTrootnode");
+    printf("DEBUG: PRTrootnode wurde aufgerufen!\n");
+
+    // Gib die Zählerinformationen aus
+    printf("Root Node Information:\n");
+    printf("CountPlus: %d\n", ROOTNODE_COUNTPLUS(arg_node));
+    printf("CountMinus: %d\n", ROOTNODE_COUNTMINUS(arg_node));
+    printf("CountMult: %d\n", ROOTNODE_COUNTMULT(arg_node));
+    printf("CountDiv: %d\n", ROOTNODE_COUNTDIV(arg_node));
+    printf("CountMod: %d\n", ROOTNODE_COUNTMOD(arg_node));
+
+    // Traversiere die Statements, die unter dem RootNode liegen
+    TRAVsons(arg_node, arg_info);
+
+    DBUG_RETURN(arg_node);
+}
+
 
 /**
  * @}

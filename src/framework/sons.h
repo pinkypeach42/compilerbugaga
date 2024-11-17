@@ -39,6 +39,9 @@ struct SONS_N_FLOAT {
 };
 struct SONS_N_NUM {
 };
+struct SONS_N_ROOTNODE {
+	node           *Statements;
+};
 struct SONS_N_STMTS {
 	node           *Stmt;
 	node           *Next;
@@ -60,6 +63,7 @@ struct SONUNION {
 	struct SONS_N_ERROR *N_error;
 	struct SONS_N_FLOAT *N_float;
 	struct SONS_N_NUM *N_num;
+	struct SONS_N_ROOTNODE *N_rootnode;
 	struct SONS_N_STMTS *N_stmts;
 	struct SONS_N_SYMBOLTABLEENTRY *N_symboltableentry;
 	struct SONS_N_VAR *N_var;

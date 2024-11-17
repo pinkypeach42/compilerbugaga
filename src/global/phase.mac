@@ -33,6 +33,11 @@ ENDPHASE( ld)
 PHASE( pet,
        "Perform example transformations",
        ALWAYS)
+  
+ /*
+ * Subphase für Zählung der Operationen (COUNTOPS)
+ */     
+SUBPHASE(countops, "Count Operations", COUNTOPSdoCount, ALWAYS, pet)
 
 SUBPHASE( ri, 
           "Rename identifiers",
@@ -50,7 +55,8 @@ SUBPHASE( os,
           "Optimise subtraction",
           OSdoOptSub, 
           ALWAYS,
-          pet)   
+          pet)  
+   
       
 ENDPHASE( pet) 
 
@@ -83,6 +89,9 @@ PHASE( cg,
 
 SUBPHASE( prt, "Generating byte code", GBCdoGenByteCode, ALWAYS, cg)      
 SUBPHASE( prt_ast, "Print ast", PRTdoPrint, ALWAYS, cg)      
+
+
+
 
 SUBPHASE( frtr, 
           "De-allocating syntax tree representation",

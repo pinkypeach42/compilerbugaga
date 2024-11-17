@@ -23,5 +23,7 @@ extern node *PRTsymboltableentry (node * arg_node, info * arg_info);
 extern node *PRTerror (node * arg_node, info * arg_info);
 
 extern node *PRTdoPrint( node *syntaxtree);
+extern node *PRINT_node(node *arg_node, info *arg_info);//Assignment 2.3
+extern node *PRTrootnode(node *arg_node, info *arg_info); //Assignment 2.3
 
 #endif /* _SAC_PRT_NODE_H_ */

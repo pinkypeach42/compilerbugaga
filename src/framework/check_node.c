@@ -159,6 +159,24 @@ node           *CHKMnum(node * arg_node, info * arg_info) {
 }
 /** <!--******************************************************************-->
  *
+ * @fn CHKMrootnode
+ *
+ * @brief Touched the node and its sons/attributes
+ *
+ * @param arg_node RootNode node to process
+ * @param arg_info pointer to info structure
+ *
+ * @return processed node
+ *
+ ***************************************************************************/
+node           *CHKMrootnode(node * arg_node, info * arg_info) {
+	DBUG_ENTER("CHKMrootnode");
+	NODE_ERROR(arg_node) = CHKMTRAV(NODE_ERROR(arg_node), arg_info);
+	ROOTNODE_STATEMENTS(arg_node) = CHKMTRAV(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	DBUG_RETURN(arg_node);
+}
+/** <!--******************************************************************-->
+ *
  * @fn CHKMstmts
  *
  * @brief Touched the node and its sons/attributes
