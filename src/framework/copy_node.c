@@ -179,17 +179,12 @@ node           *COPYnum(node * arg_node, info * arg_info) {
  *
  ***************************************************************************/
 node           *COPYrootnode(node * arg_node, info * arg_info) {
-	node           *result = TBmakeRootnode(NULL);
+	node           *result = TBmakeRootnode(NULL, NULL);
 	DBUG_ENTER("COPYrootnode");
 	LUTinsertIntoLutP(INFO_LUT(arg_info), arg_node, result);
-	/* Copy attributes */
-	ROOTNODE_COUNTPLUS(result) = ROOTNODE_COUNTPLUS(arg_node);
-	ROOTNODE_COUNTMINUS(result) = ROOTNODE_COUNTMINUS(arg_node);
-	ROOTNODE_COUNTMULT(result) = ROOTNODE_COUNTMULT(arg_node);
-	ROOTNODE_COUNTDIV(result) = ROOTNODE_COUNTDIV(arg_node);
-	ROOTNODE_COUNTMOD(result) = ROOTNODE_COUNTMOD(arg_node);
 	/* Copy sons */
-	ROOTNODE_STATEMENTS(result) = COPYTRAV(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	ROOTNODE_NEXT(result) = COPYTRAV(ROOTNODE_NEXT(arg_node), arg_info);
+	ROOTNODE_NUM(result) = COPYTRAV(ROOTNODE_NUM(arg_node), arg_info);
 	/* Return value */
 	DBUG_RETURN(result);
 }

@@ -172,7 +172,8 @@ node           *CHKMnum(node * arg_node, info * arg_info) {
 node           *CHKMrootnode(node * arg_node, info * arg_info) {
 	DBUG_ENTER("CHKMrootnode");
 	NODE_ERROR(arg_node) = CHKMTRAV(NODE_ERROR(arg_node), arg_info);
-	ROOTNODE_STATEMENTS(arg_node) = CHKMTRAV(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	ROOTNODE_NEXT(arg_node) = CHKMTRAV(ROOTNODE_NEXT(arg_node), arg_info);
+	ROOTNODE_NUM(arg_node) = CHKMTRAV(ROOTNODE_NUM(arg_node), arg_info);
 	DBUG_RETURN(arg_node);
 }
 /** <!--******************************************************************-->

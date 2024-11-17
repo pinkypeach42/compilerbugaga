@@ -455,64 +455,29 @@ node
   DBUG_RETURN( syntaxtree);
 }
 
+/** <!--******************************************************************-->
+ *
+ * @fn PRTrootnode
+ *
+ * @brief Prints the node and its sons
+ *
+ * @param arg_info pointer to info structure
+ 
+ *
+ * @return processed node
+ *
+ ************************************************************************/
 
-//Assignment 2.3
+node *PRTrootnode(node * arg_node, info * arg_info)
+{
+  DBUG_ENTER ("PRTrootnode");
 
-node *PRINT_node(node *arg_node, info *arg_info) {
-    DBUG_ENTER("PRINT_node");
+  printf("rootnode - arithmetic operations total: %d \n", NUM_VALUE(ROOTNODE_NUM(arg_node)));
 
-    if (arg_node == NULL) {
-        DBUG_RETURN(NULL);
-    }
+  ROOTNODE_NEXT( arg_node) = TRAVopt( ROOTNODE_NEXT( arg_node), arg_info);
 
-    // Print the node type
-    printf("Node Type: %s\n", getNodeTypeString(arg_node));
-
-
-    // Print attributes based on the node type
-    switch (NODE_TYPE(arg_node)) {
-        case N_rootnode:
-            printf("CountPlus: %d\n", ROOTNODE_COUNTPLUS(arg_node));
-            printf("CountMinus: %d\n", ROOTNODE_COUNTMINUS(arg_node));
-            printf("CountMult: %d\n", ROOTNODE_COUNTMULT(arg_node));
-            printf("CountDiv: %d\n", ROOTNODE_COUNTDIV(arg_node));
-            printf("CountMod: %d\n", ROOTNODE_COUNTMOD(arg_node));
-            break;
-
-        case N_binop:
-            PRTbinop(arg_node, arg_info);
-
-        // Add cases for other node types as needed
-        default:
-            printf("Unhandled node type.\n");
-            break;
-    }
-
-    // Recursively process the node's sons
-    TRAVsons(arg_node, arg_info);
-
-    DBUG_RETURN(arg_node);
+  DBUG_RETURN (arg_node);
 }
-
-
-node *PRTrootnode(node *arg_node, info *arg_info) {
-    DBUG_ENTER("PRTrootnode");
-    printf("DEBUG: PRTrootnode wurde aufgerufen!\n");
-
-    // Gib die Zählerinformationen aus
-    printf("Root Node Information:\n");
-    printf("CountPlus: %d\n", ROOTNODE_COUNTPLUS(arg_node));
-    printf("CountMinus: %d\n", ROOTNODE_COUNTMINUS(arg_node));
-    printf("CountMult: %d\n", ROOTNODE_COUNTMULT(arg_node));
-    printf("CountDiv: %d\n", ROOTNODE_COUNTDIV(arg_node));
-    printf("CountMod: %d\n", ROOTNODE_COUNTMOD(arg_node));
-
-    // Traversiere die Statements, die unter dem RootNode liegen
-    TRAVsons(arg_node, arg_info);
-
-    DBUG_RETURN(arg_node);
-}
-
 
 /**
  * @}

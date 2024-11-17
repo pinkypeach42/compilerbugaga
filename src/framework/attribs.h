@@ -41,11 +41,6 @@ struct ATTRIBS_N_NUM {
 	int		Value;
 };
 struct ATTRIBS_N_ROOTNODE {
-	int		CountPlus;
-	int		CountMinus;
-	int		CountMult;
-	int		CountDiv;
-	int		CountMod;
 };
 struct ATTRIBS_N_STMTS {
 };

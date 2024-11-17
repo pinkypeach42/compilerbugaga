@@ -40,7 +40,8 @@ struct SONS_N_FLOAT {
 struct SONS_N_NUM {
 };
 struct SONS_N_ROOTNODE {
-	node           *Statements;
+	node           *Next;
+	node           *Num;
 };
 struct SONS_N_STMTS {
 	node           *Stmt;

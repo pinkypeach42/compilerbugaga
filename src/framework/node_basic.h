@@ -25,13 +25,9 @@
  * macros and functions for N_rootnode
  *****************************************************************************/
 
-#define ROOTNODE_STATEMENTS( n) ((n)->sons.N_rootnode->Statements)
-#define ROOTNODE_COUNTPLUS( n) ((n)->attribs.N_rootnode->CountPlus)
-#define ROOTNODE_COUNTMINUS( n) ((n)->attribs.N_rootnode->CountMinus)
-#define ROOTNODE_COUNTMULT( n) ((n)->attribs.N_rootnode->CountMult)
-#define ROOTNODE_COUNTDIV( n) ((n)->attribs.N_rootnode->CountDiv)
-#define ROOTNODE_COUNTMOD( n) ((n)->attribs.N_rootnode->CountMod)
-extern node    *TBmakeRootnode(node * Statements);
+#define ROOTNODE_NEXT( n) ((n)->sons.N_rootnode->Next)
+#define ROOTNODE_NUM( n) ((n)->sons.N_rootnode->Num)
+extern node    *TBmakeRootnode(node * Next, node * Num);
 
 /*****************************************************************************
  * macros and functions for N_stmts

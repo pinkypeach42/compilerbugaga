@@ -34,11 +34,6 @@ PHASE( pet,
        "Perform example transformations",
        ALWAYS)
   
- /*
- * Subphase für Zählung der Operationen (COUNTOPS)
- */     
-SUBPHASE(countops, "Count Operations", COUNTOPSdoCount, ALWAYS, pet)
-
 SUBPHASE( ri, 
           "Rename identifiers",
           RIdoRenameIdentifiers, 
@@ -80,6 +75,19 @@ SUBPHASE (ssr,
     opt)    
 
 ENDPHASE(opt) 
+
+/******************************************************************************/
+
+PHASE(count,
+    "Count arithmetic operations",
+    ALWAYS)   
+
+SUBPHASE(countops, 
+         "Count Operations", 
+         COUNTOPSdoCount, 
+         ALWAYS, 
+         count)
+ENDPHASE(count)         
 
 /******************************************************************************/
 

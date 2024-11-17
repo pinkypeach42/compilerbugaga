@@ -198,12 +198,13 @@ node           *FREErootnode(node * arg_node, info * arg_info) {
 	node           *result = NULL;
 	DBUG_ENTER("FREErootnode");
 	DBUG_PRINT("FREE", ("Processing node N_rootnode at " F_PTR, arg_node));
-	ROOTNODE_STATEMENTS(arg_node) = FREETRAV(ROOTNODE_STATEMENTS(arg_node), arg_info);
-	result = NULL;
+	ROOTNODE_NEXT(arg_node) = FREECOND(ROOTNODE_NEXT(arg_node), arg_info);
+	ROOTNODE_NUM(arg_node) = FREETRAV(ROOTNODE_NUM(arg_node), arg_info);
+	result = ROOTNODE_NEXT(arg_node);
 	arg_node->sons.N_rootnode = MEMfree(arg_node->sons.N_rootnode);
 	arg_node->attribs.N_rootnode = MEMfree(arg_node->attribs.N_rootnode);
 	DBUG_PRINT("FREE", ("Processing node N_rootnode at " F_PTR, arg_node));
-	result = MEMfree(arg_node);
+	arg_node = MEMfree(arg_node);
 	DBUG_RETURN(result);
 }
 /** <!--******************************************************************-->

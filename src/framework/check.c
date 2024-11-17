@@ -290,24 +290,42 @@ node           *CHKrootnode(node * arg_node, info * arg_info) {
 	DBUG_ENTER("CHKrootnode");
 
 	/*
-	 * Son check: ROOTNODE_STATEMENTS
+	 * Son check: ROOTNODE_NEXT
 	 */
-	if ((FALSE)) {
-		CHKexistSon(ROOTNODE_STATEMENTS(arg_node), arg_node, "mandatory son ROOTNODE_STATEMENTS is NULL");
-		if (ROOTNODE_STATEMENTS(arg_node) != NULL) {
-			if (!((FALSE) || (NODE_TYPE(ROOTNODE_STATEMENTS(arg_node)) == N_stmts))) {
-				CHKcorrectTypeInsertError(arg_node, "ROOTNODE_STATEMENTS hasnt the right type." " It should be: " "N_stmts");
+	if ((FALSE) || (TRUE)) {
+		if (ROOTNODE_NEXT(arg_node) != NULL) {
+			if (!((FALSE) || (NODE_TYPE(ROOTNODE_NEXT(arg_node)) == N_stmts))) {
+				CHKcorrectTypeInsertError(arg_node, "ROOTNODE_NEXT hasnt the right type." " It should be: " "N_stmts");
 			}
 		}
 	} else {
-		CHKnotExist(ROOTNODE_STATEMENTS(arg_node), arg_node, "attribute ROOTNODE_STATEMENTS must be NULL");
+		CHKnotExist(ROOTNODE_NEXT(arg_node), arg_node, "attribute ROOTNODE_NEXT must be NULL");
+	}
+
+	/*
+	 * Son check: ROOTNODE_NUM
+	 */
+	if ((FALSE) || (TRUE)) {
+		if (ROOTNODE_NUM(arg_node) != NULL) {
+			if (!((FALSE) || (NODE_TYPE(ROOTNODE_NUM(arg_node)) == N_num))) {
+				CHKcorrectTypeInsertError(arg_node, "ROOTNODE_NUM hasnt the right type." " It should be: " "N_num");
+			}
+		}
+	} else {
+		CHKnotExist(ROOTNODE_NUM(arg_node), arg_node, "attribute ROOTNODE_NUM must be NULL");
 	}
 
 	/*
 	 * trav functions: to get all sons
 	 */
-	if (ROOTNODE_STATEMENTS(arg_node) != NULL) {
-		ROOTNODE_STATEMENTS(arg_node) = TRAVdo(ROOTNODE_STATEMENTS(arg_node), arg_info);
+	if (ROOTNODE_NEXT(arg_node) != NULL) {
+		ROOTNODE_NEXT(arg_node) = TRAVdo(ROOTNODE_NEXT(arg_node), arg_info);
+	}
+	/*
+	 * trav functions: to get all sons
+	 */
+	if (ROOTNODE_NUM(arg_node) != NULL) {
+		ROOTNODE_NUM(arg_node) = TRAVdo(ROOTNODE_NUM(arg_node), arg_info);
 	} DBUG_RETURN(arg_node);
 }
 /** <!--******************************************************************-->
@@ -452,7 +470,6 @@ typedef enum {
 	CHK_error_message,
 	CHK_float_value,
 	CHK_num_value,
-	CHK_rootnode_countplus,
 	CHK_var_name,
 	CHK_varlet_name
 }		attr_list;

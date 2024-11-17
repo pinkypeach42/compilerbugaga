@@ -59,7 +59,7 @@ travtables_t	travtables = {
 	,{&TRAVerror, &TRAVsons, &TRAVsons, &TRAVsons, &SSRbinop, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons}
 
 	/* TR_countops */
-	,{&TRAVerror, &COUNTOPSrootnode, &COUNTOPSstmts, &COUNTOPSassign, &COUNTOPSbinop, &COUNTOPSvarlet, &COUNTOPSvar, &COUNTOPSnum, &COUNTOPSfloat, &COUNTOPSbool, &COUNTOPSsymboltableentry, &COUNTOPSerror}
+	,{&TRAVerror, &TRAVsons, &TRAVsons, &TRAVsons, &COUNTOPSbinop, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons, &TRAVsons}
 };
 
 preposttable_t	pretable = {
